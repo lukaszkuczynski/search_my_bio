@@ -1,4 +1,5 @@
 import yaml
+from elasticsearch import Elasticsearch
 
 fname = "projects.yml"
 with open(fname) as f:
@@ -12,3 +13,5 @@ with open(fname) as f:
     for project in private.keys():
         print(project)
 
+es = Elasticsearch()
+print(es.info())
