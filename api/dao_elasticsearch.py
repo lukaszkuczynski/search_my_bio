@@ -3,9 +3,8 @@ from elasticsearch import Elasticsearch
 
 INDEX_PATTERN = 'searchmybio*'
 
+
 class ElasticDao(Dao):
-
-
 
     def __init__(self, config):
         self.host = config['host']
@@ -27,3 +26,6 @@ class ElasticDao(Dao):
     def is_doctype_present(self, doctype):
         index_present = self.es.indices.exists_type(INDEX_PATTERN, doctype)
         return index_present
+
+    def query_for_match(self, text):
+        return ""

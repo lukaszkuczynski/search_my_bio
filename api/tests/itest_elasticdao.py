@@ -22,3 +22,7 @@ class IntegrationTestElasticDao(TestCase):
     def test_cluster_is_configured(self):
         configured = self.dao.is_cluster_configured()
         self.assertTrue(configured)
+
+    def test_dao_matches_text(self):
+        hits = self.dao.query_for_match("nodejs")
+        self.assertIs(len(hits), 1)
