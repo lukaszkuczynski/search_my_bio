@@ -2,14 +2,13 @@ from api.dao import Dao
 from elasticsearch import Elasticsearch
 
 INDEX_PATTERN = 'searchmybio*'
-
+PROJECT_DOCTYPE = 'project'
 
 class ElasticDao(Dao):
 
     def __init__(self, config):
         self.host = config['host']
         self.port = config['port']
-        self.index_pattern = config['index_pattern']
         self.es = Elasticsearch(hosts=['%s:%s' % (self.host, self.port)])
 
     def is_alive(self):
@@ -27,5 +26,8 @@ class ElasticDao(Dao):
         index_present = self.es.indices.exists_type(INDEX_PATTERN, doctype)
         return index_present
 
-    def query_for_match(self, text):
-        return ""
+    def query_all_fields(self, text):
+        lucene_query = text
+        response = self.es.search(index=INDEX_PATTERN, doc_type=PROJECT_DOCTYPE, q=lucene_query)
+        hits = response['hits']['hits']
+        return hits
