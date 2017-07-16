@@ -1,16 +1,17 @@
-from abc import abstractmethod
+from abc import abstractmethod, ABCMeta
 
 
 class Dao:
+    __metaclass__ = ABCMeta
+
     @abstractmethod
     def all_projects(self):
         pass
 
     @abstractmethod
-    def hello(self):
+    def is_alive(self):
         pass
 
 
 
-class ElasticDao(Dao):
-    pass
+
