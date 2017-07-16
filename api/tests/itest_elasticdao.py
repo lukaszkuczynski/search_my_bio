@@ -18,3 +18,7 @@ class IntegrationTestElasticDao(TestCase):
     def test_cluster_contains_index(self):
         index_is_present = self.dao.is_index_present()
         self.assertTrue(index_is_present)
+
+    def test_cluster_is_configured(self):
+        configured = self.dao.is_cluster_configured()
+        self.assertTrue(configured)
