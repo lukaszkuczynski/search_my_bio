@@ -29,5 +29,4 @@ class ElasticDao(Dao):
     def query_all_fields(self, text):
         lucene_query = text
         response = self.es.search(index=INDEX_PATTERN, doc_type=PROJECT_DOCTYPE, q=lucene_query)
-        hits = response['hits']['hits']
-        return hits
+        return response

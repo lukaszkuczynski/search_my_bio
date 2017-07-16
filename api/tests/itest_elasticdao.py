@@ -24,5 +24,5 @@ class IntegrationTestElasticDao(TestCase):
         self.assertTrue(configured)
 
     def test_dao_matches_text(self):
-        hits = self.dao.query_all_fields("nodejs")
-        self.assertIs(len(hits), 1)
+        response = self.dao.query_all_fields("nodejs")
+        self.assertIs(len(response['hits']['hits']), 1)
