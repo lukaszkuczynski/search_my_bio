@@ -8,9 +8,12 @@
     <script>
 
         $('document').ready(function(){
-            alert('ready');
+            $('form#api-call').submit(function(e){
+                e.preventDefault();
+                query = $('#query').val();
+                console.log(query);
+            });
         });
-
 
     </script>
 
@@ -18,6 +21,13 @@
 <body>
 
 <h1> {{ message }} </h1>
+
+<div>
+    <form id="api-call">
+        <input type="text" id="query" />
+        <button type="submit" id="run">run</button>
+    </form>
+</div>
 
 </body>
 </html>
