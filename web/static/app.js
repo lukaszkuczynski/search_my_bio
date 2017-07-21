@@ -6,11 +6,21 @@ $('document').ready(function(){
         url = 'http://localhost:5050/api/search?q='+query;
         $.get(url, function(results) {
             console.log('Response received');
-            console.log(results);
-            $.each(results, function(index, result) {
-                console.log(result['source']['tasks']);
-            });
+            showResults(results);
         });
 
     });
 });
+
+
+function showResults(results) {
+
+    $('#results').html('');
+    $.each(results, function(index, result) {
+        console.log(result);
+        var tasks = result['source']['tasks'];
+        var div = '<div>'+tasks+'</div>';
+        $('#results').append(div)
+    });
+
+}
