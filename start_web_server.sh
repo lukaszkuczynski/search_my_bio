@@ -1,2 +1,2 @@
-export FLASK_APP=web/web_server.py
+export FLASK_APP=~/prj/searchmybio/web/web_server.py
 flask run
