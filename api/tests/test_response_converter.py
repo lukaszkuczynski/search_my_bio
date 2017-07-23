@@ -50,3 +50,4 @@ class ResponseConverterTest(TestCase):
         converted = converter.response_to_simple_hits(response)
         self.assertEquals(converted[0]["score"], 0.35870585)
         self.assertEquals(converted[0]["source"]["started at"], "2013-02")
+        self.assertEquals(converted[0]["id"], "Mini REST service for my CD Collection")

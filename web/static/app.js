@@ -31,7 +31,7 @@ function showResults(results) {
     $.each(results, function(index, result) {
         console.log(result);
         var tasks = result['source']['tasks'];
-        var title = result['source']['title'] || 'Title';
+        var title = result['id'];
         var description = result['source']['description'];
         var tags = result['source']['technologies'];
         var card_html = create_card_html('Commercial', title, description, tags);
