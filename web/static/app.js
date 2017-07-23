@@ -12,6 +12,18 @@ $('document').ready(function(){
     });
 });
 
+function create_card_html(header, title, body, tags) {
+    html = '';
+    html += '<div class="card">';
+    html +=     '<div class="card-header">' + header + "</div>";
+    html +=     '<div class="card-block">';
+    html +=         '<h4 class="card-title">' + title + "</h4>";
+    html +=         '<div class="card-text">' + body + "</div>";
+    html +=     '</div>'
+    html +=     '<div class="card-footer">' + tags + "</div>"
+    html += '</div>';
+    return html;
+}
 
 function showResults(results) {
 
@@ -19,8 +31,11 @@ function showResults(results) {
     $.each(results, function(index, result) {
         console.log(result);
         var tasks = result['source']['tasks'];
-        var div = '<div>'+tasks+'</div>';
-        $('#results').append(div)
+        var title = result['source']['title'] || 'Title';
+        var description = result['source']['description'];
+        var tags = result['source']['technologies'];
+        var card_html = create_card_html('Commercial', title, description, tags);
+        $('#results').append(card_html)
     });
 
 }

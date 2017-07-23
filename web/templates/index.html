@@ -4,25 +4,35 @@
     <title>search my bio</title>
     <script src="/static/jquery-3.2.1.min.js"></script>
     <script src="/static/app.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css"/>
 
 </head>
 <body>
 
-<h1> {{ message }} </h1>
 
-<div>
-    <form id="api-call">
-        <input type="text" id="query" />
-        <button type="submit" id="run">run</button>
-    </form>
+<div class="container">
+
+    <h1> {{ message }} </h1>
+
+
+
+
+    <div>
+        <form id="api-call" action="#">
+            <input class="form-control" type="text" id="query" />
+            <input class="btn btn-default" type="submit" id="run" value="run">
+        </form>
+    </div>
+
+
+    <div id="results">
+
+    </div>
+
+
 </div>
 
 
-<div id="results">
-
-
-
-</div>
 
 </body>
 </html>
