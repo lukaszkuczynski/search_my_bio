@@ -13,3 +13,6 @@ def hello():
 @app.route("/cv")
 def cv():
     return render_template("static_cv.html")
+
+if __name__ == '__main__':
+    app.run()
