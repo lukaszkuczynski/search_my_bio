@@ -11,7 +11,7 @@ def projects_from_file(fname):
         for project in private.keys():
             yield (project, private[project])
 
-fname = "projects.yml"
+fname = "life_tasks.yml"
 
 es = Elasticsearch()
 for project_name_and_value in projects_from_file(fname):
