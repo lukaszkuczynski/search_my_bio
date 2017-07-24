@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css"/>
     <script>
         $('document').ready(function(){
-            var url = 'http://localhost:5050/api/search?q=*';
+            var url = 'http://localhost:5050/api/all';
             $.get(url, function(results) {
                 showResults(results);
             });
