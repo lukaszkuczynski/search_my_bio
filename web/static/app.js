@@ -20,6 +20,22 @@ function create_card_html(header, context) {
     html +=         '<h4 class="card-title">' + context['title'] + "</h4>";
     html +=         '<div class="card-text">';
     html +=             '<p>'+  context['body'] + "</p>";
+    if (context['challenges']) {
+        html +=             '<p>Challenges:<ul>';
+        for (i=0; i<context['challenges'].length; i++) {
+            var challenge = context['challenges'][i];
+            html +=             '<li>'+challenge+'</li>';
+        }
+        html +=             '</ul></p>';
+    }
+    if (context['learned']) {
+        html +=             '<p>Lessons learned:<ul>';
+        for (i=0; i<context['learned'].length; i++) {
+            var lesson = context['learned'][i];
+            html +=             '<li>'+lesson+'</li>';
+        }
+        html +=             '</ul></p>';
+    }
     if (context['tags']) {
         html +=             '<p>';
         for (i=0; i<context['tags'].length; i++) {
@@ -44,7 +60,9 @@ function showResults(results) {
             "title" : result['id'],
             "description" : result['source']['description'],
             "tags" : result['source']['technologies'],
-            "time" : result['source']['started']
+            "time" : result['source']['started'],
+            "learned" : result['source']['learned'],
+            "challenges" : result['source']['challenges']
         }
         var card_html = create_card_html('Commercial', context);
         $('#results').append(card_html)
