@@ -27,3 +27,14 @@ def api_search():
     response = dao.query_all_fields(queried_text)
     simple_response = converter.response_to_simple_hits(response)
     return jsonify(simple_response)
+
+@app.route("/api/all")
+def all():
+    print("returing all docs");
+    response = dao.all_docs_sorted_by_date();
+    simple_response = converter.response_to_simple_hits(response)
+    return jsonify(simple_response)
+
+
+if __name__ == '__main__':
+    app.run(port=5050)

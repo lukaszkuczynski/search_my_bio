@@ -30,3 +30,7 @@ class ElasticDao(Dao):
         lucene_query = text
         response = self.es.search(index=INDEX_PATTERN, doc_type=PROJECT_DOCTYPE, q=lucene_query)
         return response
+
+    def all_docs_sorted_by_date(self):
+        response = self.es.search(index=INDEX_PATTERN, doc_type=PROJECT_DOCTYPE, body={"sort" : {"started": {"order": "desc"}}})
+        return response
