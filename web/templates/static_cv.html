@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>search my bio</title>
+    <script src="/static/jquery-3.2.1.min.js"></script>
+    <script src="/static/app.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css"/>
+    <script>
+        $('document').ready(function(){
+            var url = 'http://localhost:5050/api/search?q=*';
+            $.get(url, function(results) {
+                showResults(results);
+            });
+        });
+
+    </script>
+
+</head>
+<body>
+
+
+<div class="container">
+
+    <h1> Luk's bio </h1>
+
+
+    <div id="results">
+
+    </div>
+
+
+</div>
+
+
+
+</body>
+</html>
