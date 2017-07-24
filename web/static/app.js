@@ -20,7 +20,13 @@ function create_card_html(header, title, body, tags, time) {
     html +=         '<h4 class="card-title">' + title + "</h4>";
     html +=         '<div class="card-text">';
     html +=             '<p>'+  body + "</p>";
-    html +=             '<p>'+  tags + "</p>";
+    if (tags) {
+        html +=             '<p>';
+        for (i=0; i<tags.length; i++) {
+            html +=             '<span class="badge badge-default" style="margin-right: 10px">'+ tags[i] + "</span>"
+        }
+        html +=             '</p>'
+    }
     html +=          "</div>";
     html +=     '</div>'
     html +=     '<div class="card-footer text-muted"> started at ' + time + "</div>"
