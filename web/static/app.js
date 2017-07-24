@@ -12,24 +12,24 @@ $('document').ready(function(){
     });
 });
 
-function create_card_html(header, title, body, tags, time) {
+function create_card_html(header, context) {
     html = '';
     html += '<div class="card" style="margin-bottom:30px">';
     html +=     '<div class="card-header">' + header + "</div>";
     html +=     '<div class="card-block">';
-    html +=         '<h4 class="card-title">' + title + "</h4>";
+    html +=         '<h4 class="card-title">' + context['title'] + "</h4>";
     html +=         '<div class="card-text">';
-    html +=             '<p>'+  body + "</p>";
-    if (tags) {
+    html +=             '<p>'+  context['body'] + "</p>";
+    if (context['tags']) {
         html +=             '<p>';
-        for (i=0; i<tags.length; i++) {
-            html +=             '<span class="badge badge-default" style="margin-right: 10px">'+ tags[i] + "</span>"
+        for (i=0; i<context['tags'].length; i++) {
+            html +=             '<span class="badge badge-default" style="margin-right: 10px">'+ context['tags'][i] + "</span>"
         }
         html +=             '</p>'
     }
     html +=          "</div>";
     html +=     '</div>'
-    html +=     '<div class="card-footer text-muted"> started at ' + time + "</div>"
+    html +=     '<div class="card-footer text-muted"> started at ' + context['time'] + "</div>"
     html += '</div>';
     return html;
 }
@@ -39,12 +39,14 @@ function showResults(results) {
     $('#results').html('');
     $.each(results, function(index, result) {
         console.log(result);
-        var tasks = result['source']['tasks'];
-        var title = result['id'];
-        var description = result['source']['description'];
-        var tags = result['source']['technologies'];
-        var time = result['source']['started'];
-        var card_html = create_card_html('Commercial', title, description, tags, time);
+        context = {
+            "tasks" : result['source']['tasks'],
+            "title" : result['id'],
+            "description" : result['source']['description'],
+            "tags" : result['source']['technologies'],
+            "time" : result['source']['started']
+        }
+        var card_html = create_card_html('Commercial', context);
         $('#results').append(card_html)
     });
 
