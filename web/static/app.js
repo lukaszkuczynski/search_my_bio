@@ -7,7 +7,10 @@ $('document').ready(function(){
         $.get(url, function(results) {
             console.log('Response received');
             showResults(results);
-        });
+        })
+        .fail(function() {
+            alert( "error" );
+        })
 
     });
 });
