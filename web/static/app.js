@@ -19,7 +19,7 @@ function create_card_html(header, context) {
     html +=     '<div class="card-block">';
     html +=         '<h4 class="card-title">' + context['title'] + "</h4>";
     html +=         '<div class="card-text">';
-    html +=             '<p>'+  context['body'] + "</p>";
+    html +=             '<p>'+  context['description'] + "</p>";
     if (context['challenges']) {
         html +=             '<p>Challenges:<ul>';
         for (i=0; i<context['challenges'].length; i++) {

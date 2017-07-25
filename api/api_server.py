@@ -35,6 +35,3 @@ def all():
     simple_response = converter.response_to_simple_hits(response)
     return jsonify(simple_response)
 
-
-if __name__ == '__main__':
-    app.run(port=5050)
