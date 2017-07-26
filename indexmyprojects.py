@@ -15,8 +15,8 @@ def projects_from_file(fname):
 
 fname = "life_tasks.yml"
 
-elastic_config = load_config('elastic-config.yml')
-es = Elasticsearch(hosts=['%s:%s' % (elastic_config['host'], elastic_config['port'])])
+elastic_hosts = load_config('elastic-config.yml')
+es = Elasticsearch(hosts=elastic_hosts, verify_certs=False)
 for project_name_and_value in projects_from_file(fname):
     project_name = project_name_and_value[0]
     project_details = project_name_and_value[1]

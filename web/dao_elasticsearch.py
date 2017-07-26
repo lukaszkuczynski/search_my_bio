@@ -6,10 +6,8 @@ PROJECT_DOCTYPE = 'project'
 
 class ElasticDao(Dao):
 
-    def __init__(self, config):
-        self.host = config['host']
-        self.port = config['port']
-        self.es = Elasticsearch(hosts=['%s:%s' % (self.host, self.port)])
+    def __init__(self, hosts):
+        self.es = Elasticsearch(hosts=hosts, verify_certs=False)
 
     def is_alive(self):
         health = self.es.cat.health()
