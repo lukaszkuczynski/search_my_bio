@@ -3,7 +3,7 @@ $('document').ready(function(){
         e.preventDefault();
         query = $('#query').val();
         console.log('query is '+query);
-        url = 'http://localhost:5050/api/search?q='+query;
+        url = '/api/search?q='+query;
         $.get(url, function(results) {
             console.log('Response received');
             showResults(results);
