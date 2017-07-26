@@ -1,6 +1,8 @@
 import yaml
 from elasticsearch import Elasticsearch
 
+from config_loader import load_config
+
 def projects_from_file(fname):
     with open(fname) as f:
         doc = yaml.load(f)
@@ -13,7 +15,8 @@ def projects_from_file(fname):
 
 fname = "life_tasks.yml"
 
-es = Elasticsearch()
+elastic_config = load_config('elastic-config.yml')
+es = Elasticsearch(hosts=['%s:%s' % (elastic_config['host'], elastic_config['port'])])
 for project_name_and_value in projects_from_file(fname):
     project_name = project_name_and_value[0]
     project_details = project_name_and_value[1]
