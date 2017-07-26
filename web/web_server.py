@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request, jsonify
+
+from config_loader import load_config
 from web.dao_elasticsearch import ElasticDao
 from web.response_converter import EsResponseConverter
 
@@ -8,10 +10,7 @@ app.debug = True
 
 converter = EsResponseConverter()
 
-elastic_config = {
-    "host": "localhost",
-    "port": 9200
-}
+elastic_config = load_config('elastic-config.yml')
 dao = ElasticDao(elastic_config)
 
 
