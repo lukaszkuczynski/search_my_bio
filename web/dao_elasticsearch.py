@@ -1,4 +1,4 @@
-from api.dao import Dao
+from web.dao import Dao
 from elasticsearch import Elasticsearch
 
 INDEX_PATTERN = 'searchmybio*'
