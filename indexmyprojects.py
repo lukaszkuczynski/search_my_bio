@@ -20,6 +20,7 @@ es = Elasticsearch(hosts=elastic_hosts, verify_certs=False)
 for project_name_and_value in projects_from_file(fname):
     project_name = project_name_and_value[0]
     project_details = project_name_and_value[1]
+    project_details['title'] = project_name
     es.index(index="searchmybio_luke", doc_type='project', id=project_name, body=project_details)
 
 
