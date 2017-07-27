@@ -26,7 +26,7 @@ class ElasticDao(Dao):
 
     def query_all_fields(self, text):
         lucene_query = text
-        response = self.es.search(index=INDEX_PATTERN, doc_type=PROJECT_DOCTYPE, q=lucene_query)
+        response = self.es.search(index=INDEX_PATTERN, doc_type=PROJECT_DOCTYPE, q=lucene_query, size=100)
         return response
 
     def all_docs_sorted_by_date(self):
