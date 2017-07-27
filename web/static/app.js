@@ -6,7 +6,11 @@ $('document').ready(function(){
         url = '/api/search?q='+query;
         $.get(url, function(results) {
             console.log('Response received');
-            showResults(results);
+            if (results.length > 0) {
+                showResults(results);
+            } else {
+                showWarning('No results found for query <strong>'+query+'</strong>')
+            }
         })
         .fail(function() {
             alert( "error" );
@@ -54,7 +58,7 @@ function create_card_html(header, context) {
 }
 
 function showResults(results) {
-
+    $('#noresults').hide();
     $('#results').html('');
     $.each(results, function(index, result) {
         console.log(result);
@@ -71,5 +75,12 @@ function showResults(results) {
         var card_html = create_card_html(commercial_or_private, context);
         $('#results').append(card_html)
     });
+
+}
+
+function showWarning(text) {
+    $('#results').html('');
+    $('#noresults').show();
+    $('#noresults').html(text);
 
 }

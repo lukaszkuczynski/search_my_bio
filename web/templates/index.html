@@ -5,19 +5,17 @@
     <script src="/static/jquery-3.2.1.min.js"></script>
     <script src="/static/app.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/style.css"/>
 
 </head>
 <body>
-
-
 <div class="container">
 
-    <h1> {{ message }} </h1>
+    <h1>Search my bio</h1>
 
 
 
-
-    <div>
+    <div id="query-container">
         <form id="api-call" action="#">
 
             <div class="input-group">
@@ -29,6 +27,8 @@
 
         </form>
     </div>
+
+    <div class="alert alert-warning" id="noresults" style="display: none;"></div>
 
 
     <div id="results">
