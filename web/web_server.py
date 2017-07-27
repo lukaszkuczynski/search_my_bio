@@ -28,6 +28,8 @@ def cv():
 @app.route("/api/search")
 def api_search():
     queried_text = request.args.get("q")
+    if queried_text == '':
+        queried_text = '*'
     print('query is %s' % queried_text)
     response = dao.query_all_fields(queried_text)
     simple_response = converter.response_to_simple_hits(response)
