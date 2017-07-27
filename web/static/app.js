@@ -67,7 +67,8 @@ function showResults(results) {
             "learned" : result['source']['learned'],
             "challenges" : result['source']['challenges']
         }
-        var card_html = create_card_html('Commercial', context);
+        commercial_or_private = result['source']['type']
+        var card_html = create_card_html(commercial_or_private, context);
         $('#results').append(card_html)
     });
 
