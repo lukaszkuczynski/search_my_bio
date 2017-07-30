@@ -24,6 +24,10 @@ def hello():
 def cv():
     return render_template("static_cv.html")
 
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
+
 
 @app.route("/api/search")
 def api_search():
