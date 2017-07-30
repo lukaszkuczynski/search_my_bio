@@ -1,3 +1,7 @@
 div#query-container {
   margin-bottom: 20px;
 }
+
+div.container {
+  margin-top: 70px;
+}
