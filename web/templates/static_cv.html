@@ -24,7 +24,13 @@
             <div class="card-header"> started {{ project['_source']['started'] }} </div>
                 <div class="card-block">
                 <h4 class="card-title"> {{ project['_source']['title']  }} </h4>
-                    {{ project['_source']['description']  }}
+                    <p>{{ project['_source']['description']  }}</p>
+                    <p>
+                        {% for tag in project['_source']['technologies'] %}
+                            <span class="badge badge-default tag"> {{ tag }} </span>
+                        {% endfor %}
+
+                    </p>
                 </div>
         </div>
     {% endfor %}
@@ -38,7 +44,13 @@
             <div class="card-header"> started {{ project['_source']['started'] }} </div>
                 <div class="card-block">
                 <h4 class="card-title"> {{ project['_source']['title']  }} </h4>
-                    {{ project['_source']['description']  }}
+                    <p>{{ project['_source']['description']  }}</p>
+                    <p>
+                        {% for tag in project['_source']['technologies'] %}
+                            <span class="badge badge-default tag"> {{ tag }} </span>
+                        {% endfor %}
+
+                    </p>
                 </div>
         </div>
     {% endfor %}

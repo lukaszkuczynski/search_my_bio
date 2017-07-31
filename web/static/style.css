@@ -38,3 +38,7 @@ div.container {
 .printable-cv .card {
     margin-bottom : 30px
     }
+
+span.tag {
+    margin-right: 10px
+}
