@@ -34,3 +34,7 @@ div.container {
     background: #007bb5;
     color: white;
 }
+
+.printable-cv .card {
+    margin-bottom : 30px
+    }

@@ -1,14 +1,11 @@
-from api.dao_elasticsearch import ElasticDao
+from web.dao_elasticsearch import ElasticDao
 from unittest import TestCase
+from config_loader import load_config
 
 class IntegrationTestElasticDao(TestCase):
 
     def setUp(self):
-        config = {
-            "host": "localhost",
-            "port": 9200,
-            "index_pattern": "searchmybio_luke"
-        }
+        config = load_config("elastic-config.yml")
         self.dao = ElasticDao(config)
 
     def test_elastic_is_alive(self):
@@ -34,3 +31,17 @@ class IntegrationTestElasticDao(TestCase):
             first_date = hits[0]['_source']['started']
             last_date = hits[len(hits)-1]['_source']['started']
             self.assertGreater(first_date, last_date)
+
+    def test_dao_returns_docs_by_type(self):
+        response = self.dao.docs_sorted_by_date(innertype='commercial')
+        hits = response['hits']['hits']
+        self.assertTrue(len(hits) > 0)
+        if len(hits) > 1:
+            first_type = hits[0]['_source']['type']
+            self.assertEquals("commercial", first_type)
+        response = self.dao.docs_sorted_by_date(innertype='private')
+        hits = response['hits']['hits']
+        self.assertTrue(len(hits) > 0)
+        if len(hits) > 1:
+            first_type = hits[0]['_source']['type']
+            self.assertEquals("private", first_type)

@@ -3,17 +3,7 @@
 <head>
     <title>search my bio</title>
     <script src="/static/jquery-3.2.1.min.js"></script>
-    <script src="/static/app.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css"/>
-    <script>
-        $('document').ready(function(){
-            var url = 'api/all';
-            $.get(url, function(results) {
-                showResults(results);
-            });
-        });
-
-    </script>
     <link rel="stylesheet" type="text/css" href="/static/style.css">
 
 </head>
@@ -22,11 +12,36 @@
 
 <div class="container">
 
-    <h1> Luk's bio </h1>
+    <h1> My bio </h1>
 
 
-    <div id="results" class="printable-cv">
+    <h2>Projects</h2>
 
+    <h3>Commercial</h3>
+    <div class="printable-cv">
+    {% for project in context['commercial_projects'] %}
+        <div class="card" >
+            <div class="card-header"> started {{ project['_source']['started'] }} </div>
+                <div class="card-block">
+                <h4 class="card-title"> {{ project['_source']['title']  }} </h4>
+                    {{ project['_source']['description']  }}
+                </div>
+        </div>
+    {% endfor %}
+    </div>
+
+
+    <h3>Private</h3>
+    <div class="printable-cv">
+    {% for project in context['private_projects'] %}
+        <div class="card" >
+            <div class="card-header"> started {{ project['_source']['started'] }} </div>
+                <div class="card-block">
+                <h4 class="card-title"> {{ project['_source']['title']  }} </h4>
+                    {{ project['_source']['description']  }}
+                </div>
+        </div>
+    {% endfor %}
     </div>
 
 

@@ -22,7 +22,15 @@ def hello():
 
 @app.route("/cv")
 def cv():
-    return render_template("static_cv.html")
+    response = dao.docs_sorted_by_date(innertype='commercial')
+    commercial_projects = response['hits']['hits']
+    response = dao.docs_sorted_by_date(innertype='private')
+    private_projects = response['hits']['hits']
+    context = {
+        'commercial_projects' : commercial_projects,
+        'private_projects': private_projects
+    }
+    return render_template("static_cv.html", context = context)
 
 @app.route("/contact")
 def contact():

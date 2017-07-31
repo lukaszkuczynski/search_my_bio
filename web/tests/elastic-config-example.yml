@@ -1,0 +1,8 @@
+host: localhost
+port: 9200
+index_name: searchmybio_luke
+
+
+# or
+
+full_url: http://host:port

@@ -32,3 +32,18 @@ class ElasticDao(Dao):
     def all_docs_sorted_by_date(self):
         response = self.es.search(index=INDEX_PATTERN, doc_type=PROJECT_DOCTYPE, body={"sort" : {"started": {"order": "desc"}}})
         return response
+
+    def docs_sorted_by_date(self, innertype):
+        response = self.es.search(index=INDEX_PATTERN, doc_type=PROJECT_DOCTYPE, body={
+            "sort" : {
+                "started": {
+                    "order": "desc"
+                }
+            },
+            "query" : {
+                "match": {
+                    "type": innertype
+                }
+            }
+        })
+        return response
