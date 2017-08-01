@@ -1,4 +1,7 @@
 from flask import Flask, render_template, request, jsonify
+import datetime, logging
+from logging import handlers
+
 
 from config_loader import load_config
 from web.dao_elasticsearch import ElasticDao
@@ -7,6 +10,18 @@ from web.response_converter import EsResponseConverter
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.debug = True
+
+LOG_FILENAME = 'app_access_logs.log'
+
+app.logger.setLevel(logging.INFO) # use the native logger of flask
+
+handler = handlers.RotatingFileHandler(
+    LOG_FILENAME,
+    maxBytes=1024 * 1024 * 100,
+    backupCount=20
+    )
+
+app.logger.addHandler(handler)
 
 converter = EsResponseConverter()
 
@@ -56,3 +71,17 @@ def all():
 
 if __name__ == '__main__':
     app.run()
+
+@app.before_request
+def pre_request_logging():
+    #Logging statement
+    # if 'text/html' in request.headers['Accept']:
+    app.logger.info('\t'.join([
+        datetime.datetime.today().ctime(),
+        request.remote_addr,
+        request.method,
+        request.url,
+        # str(request.data,
+        # ', '.join([': '.join(x) for x in request.headers])]
+        ])
+    )
