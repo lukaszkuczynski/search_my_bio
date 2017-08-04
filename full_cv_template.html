@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>search my bio</title>
+    <link rel="stylesheet" type="text/css" href="web/static/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="web/static/style.css">
+
+</head>
+<body>
+
+
+<div class="container">
+
+
+    <h2>Projects</h2>
+
+    <h3>Commercial</h3>
+    <div class="printable-cv">
+    {% for key in context['commercial_projects'] %}
+        <div class="card" >
+            <div class="card-header"> started {{ context['commercial_projects'][key]['started'] }} </div>
+                <div class="card-block">
+                <h4 class="card-title">{{ key }}</h4>
+                    <p>{{ context['commercial_projects'][key]['description']  }}</p>
+                    <p>
+                        {% for tag in context['commercial_projects'][key]['technologies'] %}
+                            <span class="badge badge-default tag"> {{ tag }} </span>
+                        {% endfor %}
+
+                    </p>
+                </div>
+        </div>
+    {% endfor %}
+    </div>
+
+
+    <h3>Private</h3>
+    <div class="printable-cv">
+    {% for key in context['private_projects'] %}
+        <div class="card" >
+            <div class="card-header"> started {{ context['private_projects'][key]['started'] }} </div>
+                <div class="card-block">
+                <h4 class="card-title">{{ key }}</h4>
+                    <p>{{ context['private_projects'][key]['description']  }}</p>
+                    <p>
+                        {% for tag in context['private_projects'][key]['technologies'] %}
+                            <span class="badge badge-default tag"> {{ tag }} </span>
+                        {% endfor %}
+
+                    </p>
+                </div>
+        </div>
+    {% endfor %}
+    </div>
+
+
+</div>
+
+
+
+</body>
+</html>

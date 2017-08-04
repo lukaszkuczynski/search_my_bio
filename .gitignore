@@ -2,3 +2,5 @@
 __pycache__
 life_tasks.yml
 elastic-config.yml
+*.log
+out_cv.html
