@@ -12,15 +12,13 @@
 
 <div class="container">
 
-    <h2>General info</h2>
+    <h2 class="display-4">General info</h2>
 
 
-    <h4>Name</h4>
     <p>
         <strong>Name: </strong> {{ context['general']['name'] }}
     </p>
 
-    <h4>Social</h4>
         <p>
             <strong>LinkedIn: </strong> {{ context['general']['linkedin'] }}
         </p>
@@ -31,70 +29,69 @@
             <strong>Blog: </strong> {{ context['general']['blog'] }}
         </p>
 
-    <h4>Contact</h4>
     <p>
         <strong>Email: </strong> {{ context['general']['email'] }}
     </p>
 
 
 
-    <h2>Education</h2>
+    <!--<h2>Education</h2>-->
 
-    <div class="printable-cv">
-        {% for key in context['schools'] %}
-        <div class="card" >
-            <div class="card-block">
-                <h4 class="card-title">{{ key }}</h4>
-                <p><strong>Period:</strong> From {{ context['schools'][key]['started'] }} to {{ context['schools'][key]['finished'] }} </p>
-                <p><strong>Thesis:</strong> {{ context['schools'][key]['thesis'] }} </p>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-
-
+    <!--<div class="printable-cv">-->
+        <!--{% for key in context['schools'] %}-->
+        <!--<div class="card" >-->
+            <!--<div class="card-block">-->
+                <!--<h4 class="card-title">{{ key }}</h4>-->
+                <!--<p><strong>Period:</strong> From {{ context['schools'][key]['started'] }} to {{ context['schools'][key]['finished'] }} </p>-->
+                <!--<p><strong>Thesis:</strong> {{ context['schools'][key]['thesis'] }} </p>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--{% endfor %}-->
+    <!--</div>-->
 
 
-    <h2>Projects</h2>
 
-    <h3>Commercial</h3>
-    <div class="printable-cv">
+
+    <h2 class="display-4">Commercial projects</h2>
+
     {% for key in context['commercial_projects'] %}
-        <div class="card" >
-            <div class="card-header"> started {{ context['commercial_projects'][key]['started'] }} </div>
-                <div class="card-block">
-                <h4 class="card-title">{{ key }}</h4>
-                    <p>{{ context['commercial_projects'][key]['description']  }}</p>
-                    <p>
-                        {% for tag in context['commercial_projects'][key]['technologies'] %}
-                            <span class="badge badge-default tag"> {{ tag }} </span>
-                        {% endfor %}
-
-                    </p>
+        <div class="item">
+            <h4>{{ key }}
+                <small class="text-muted">started {{ context['commercial_projects'][key]['started'] }}</small>
+            </h4>
+            <p>{{ context['commercial_projects'][key]['description']  }}</p>
+            <p>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                {% for tag in context['commercial_projects'][key]['technologies'] %}
+                    <button type="button" class="btn btn-secondary">{{ tag }}</button>
+                {% endfor %}
                 </div>
+
+            </p>
         </div>
+        <hr/>
     {% endfor %}
-    </div>
 
 
-    <h3>Private</h3>
-    <div class="printable-cv">
+
+    <h2 class="display-4">Private projects</h2>
     {% for key in context['private_projects'] %}
-        <div class="card" >
-            <div class="card-header"> started {{ context['private_projects'][key]['started'] }} </div>
-                <div class="card-block">
-                <h4 class="card-title">{{ key }}</h4>
-                    <p>{{ context['private_projects'][key]['description']  }}</p>
-                    <p>
-                        {% for tag in context['private_projects'][key]['technologies'] %}
-                            <span class="badge badge-default tag"> {{ tag }} </span>
-                        {% endfor %}
-
-                    </p>
+        <div class="item">
+            <h4>{{ key }}
+                <small class="text-muted">started {{ context['private_projects'][key]['started'] }}</small>
+            </h4>
+            <p>{{ context['private_projects'][key]['description']  }}</p>
+            <p>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
+                {% for tag in context['private_projects'][key]['technologies'] %}
+                    <button type="button" class="btn btn-secondary">{{ tag }}</button>
+                {% endfor %}
                 </div>
+
+            </p>
         </div>
+        <hr/>
     {% endfor %}
-    </div>
 
 
 </div>
