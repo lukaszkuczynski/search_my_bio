@@ -20,7 +20,9 @@ def generate():
         context = {
             'commercial_projects' : commercial,
             'private_projects': private,
-            'schools': doc['Education']['schools']
+            'schools': doc['Education']['schools'],
+            'general': doc['General'],
+            'dynamic_webpage_url': doc['bio_url']
         }
         out = jinja_render('./full_cv_template.html', context)
         print(out)
