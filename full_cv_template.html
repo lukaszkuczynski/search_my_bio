@@ -11,6 +11,22 @@
 
 <div class="container">
 
+    <h2>Education</h2>
+
+    <div class="printable-cv">
+        {% for key in context['schools'] %}
+        <div class="card" >
+            <div class="card-block">
+                <h4 class="card-title">{{ key }}</h4>
+                <p><strong>Period:</strong> From {{ context['schools'][key]['started'] }} to {{ context['schools'][key]['finished'] }} </p>
+                <p><strong>Thesis:</strong> {{ context['schools'][key]['thesis'] }} </p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+
 
     <h2>Projects</h2>
 

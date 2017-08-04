@@ -19,9 +19,11 @@ def generate():
         private = doc['Projects']['Private']
         context = {
             'commercial_projects' : commercial,
-            'private_projects': private
+            'private_projects': private,
+            'schools': doc['Education']['schools']
         }
         out = jinja_render('./full_cv_template.html', context)
+        print(out)
         with open(fname_out, 'w') as fout:
             fout.write(out)
 
