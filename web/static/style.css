@@ -42,3 +42,7 @@ div.container {
 span.tag {
     margin-right: 10px
 }
+
+div.item     {
+   page-break-inside: avoid;
+}
