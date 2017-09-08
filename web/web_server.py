@@ -5,7 +5,6 @@ from logging import handlers
 
 from config_loader import load_config
 from web.dao_elasticsearch import ElasticDao
-from web.response_converter import EsResponseConverter
 
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
@@ -22,8 +21,6 @@ handler = handlers.RotatingFileHandler(
     )
 
 app.logger.addHandler(handler)
-
-converter = EsResponseConverter()
 
 elastic_config = load_config('elastic-config.yml')
 dao = ElasticDao(elastic_config)
@@ -59,15 +56,7 @@ def api_search():
         queried_text = '*'
     print('query is %s' % queried_text)
     response = dao.query_all_fields(queried_text)
-    simple_response = converter.response_to_simple_hits(response)
-    return jsonify(simple_response)
-
-@app.route("/api/all")
-def all():
-    print("returning all docs")
-    response = dao.all_docs_sorted_by_date()
-    simple_response = converter.response_to_simple_hits(response)
-    return jsonify(simple_response)
+    return jsonify(response)
 
 if __name__ == '__main__':
     app.run()

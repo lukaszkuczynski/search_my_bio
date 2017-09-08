@@ -4,10 +4,12 @@ $('document').ready(function(){
         query = $('#query').val();
         console.log('query is '+query);
         url = '/api/search?q='+query;
-        $.get(url, function(results) {
+        $.get(url, function(response) {
             console.log('Response received');
-            if (results.length > 0) {
-                showResults(results);
+            console.log(response);
+            hits = response['hits']['hits']
+            if (hits.length > 0) {
+                showHits(hits);
             } else {
                 showWarning('No results found for query <strong>'+query+'</strong>')
             }
@@ -57,21 +59,21 @@ function create_card_html(header, context) {
     return html;
 }
 
-function showResults(results) {
+function showHits(hits) {
     $('#noresults').hide();
     $('#results').html('');
-    $.each(results, function(index, result) {
-        console.log(result);
+    $.each(hits, function(index, hit) {
+        console.log(hit);
         context = {
-            "tasks" : result['source']['tasks'],
-            "title" : result['id'],
-            "description" : result['source']['description'],
-            "tags" : result['source']['technologies'],
-            "time" : result['source']['started'],
-            "learned" : result['source']['learned'],
-            "challenges" : result['source']['challenges']
+            "tasks" : hit['_source']['tasks'],
+            "title" : hit['_id'],
+            "description" : hit['_source']['description'],
+            "tags" : hit['_source']['technologies'],
+            "time" : hit['_source']['started'],
+            "learned" : hit['_source']['learned'],
+            "challenges" : hit['_source']['challenges']
         }
-        commercial_or_private = result['source']['type']
+        commercial_or_private = hit['_source']['type']
         var card_html = create_card_html(commercial_or_private, context);
         $('#results').append(card_html)
     });
