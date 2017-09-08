@@ -13,6 +13,7 @@ $('document').ready(function(){
             } else {
                 showWarning('No results found for query <strong>'+query+'</strong>')
             }
+            showProcessingTime("response received in " + response['took'] + " ms")
         })
         .fail(function() {
             alert( "error" );
@@ -84,5 +85,8 @@ function showWarning(text) {
     $('#results').html('');
     $('#noresults').show();
     $('#noresults').html(text);
+}
 
+function showProcessingTime(time) {
+    $('#took').html(time)
 }
