@@ -50,25 +50,23 @@
 
     <h2>Projects</h2>
 
-    <h3>Commercial</h3>
+    <h3>Commercial projects</h3>
+
+    <ul>
     <div class="printable-cv">
     {% for project in context['commercial_projects'] %}
-        <div class="card" >
-            <div class="card-header"> started {{ project['_source']['started'] }} </div>
-                <div class="card-block">
-                <h4 class="card-title"> {{ project['_source']['title']  }} </h4>
-                    <p>{{ project['_source']['description']  }}</p>
-                    <p>
-                        {% for tag in project['_source']['technologies'] %}
-                            <span class="badge badge-default tag"> {{ tag }} </span>
-                        {% endfor %}
-
-                    </p>
-                </div>
-        </div>
+        <li>{{ project['_source']['started'] }} - {{ project['_source']['finished'] }} @<i>company_name</i>
+            <strong>{{ project['_source']['title'] }}</strong>
+            <p>{{ project['_source']['description'] }}</p>
+            <i>Technologies: </i>
+            {% for tag in project['_source']['technologies'] %}
+                <span> {{ tag }} </span>
+            {% endfor %}
+        </li>
     {% endfor %}
-    </div>
 
+    </div>
+    </ul>
 
     <h3>Private</h3>
     <div class="printable-cv">
