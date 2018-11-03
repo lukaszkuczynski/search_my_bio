@@ -54,20 +54,26 @@
         <!--{% endfor %}-->
     <!--</div>-->
 
+    <h2 class="display-4">Skill cloud</h2>
+        <img src="{{ context['skill_cloud_url'] }}" />
 
-
+        <hr/>
 
     <h2 class="display-4">Commercial projects</h2>
 
-    {% for key in context['commercial_projects'] %}
+    {% if context['commercial_projects_hidden'] %}
+    There are context['commercial_projects_hidden'] hidden.
+    {% endif %}
+
+    {% for project in context['commercial_projects'] %}
         <div class="item">
-            <h4>{{ key }}
-                <small class="text-muted">started {{ context['commercial_projects'][key]['started'] }}</small>
+            <h4>{{ project['name'] }}
+                <small class="text-muted">started {{ project['started'] }}</small>
             </h4>
-            <p>{{ context['commercial_projects'][key]['description']  }}</p>
+            <p>{{ project['description']  }}</p>
             <p>
                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-                {% for tag in context['commercial_projects'][key]['technologies'] %}
+                {% for tag in project['technologies'] %}
                     <button type="button" class="btn btn-secondary">{{ tag }}</button>
                 {% endfor %}
                 </div>
@@ -80,15 +86,20 @@
 
 
     <h2 class="display-4">Private projects</h2>
-    {% for key in context['private_projects'] %}
+
+    {% if context['private_projects_hidden'] %}
+    There are context['private_projects_hidden'] hidden.
+    {% endif %}
+
+    {% for project in context['private_projects'] %}
         <div class="item">
-            <h4>{{ key }}
-                <small class="text-muted">started {{ context['private_projects'][key]['started'] }}</small>
+            <h4>{{ project['name'] }}
+                <small class="text-muted">started {{ project['started'] }}</small>
             </h4>
-            <p>{{ context['private_projects'][key]['description']  }}</p>
+            <p>{{ project['description']  }}</p>
             <p>
                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
-                {% for tag in context['private_projects'][key]['technologies'] %}
+                {% for tag in project['technologies'] %}
                     <button type="button" class="btn btn-secondary">{{ tag }}</button>
                 {% endfor %}
                 </div>
@@ -102,7 +113,7 @@
 </div>
 
 
-<p>Printed using SearchMyBio, for more details visit {{ context['dynamic_webpage_url'] }} </p>
+<p>Printed using SearchMyBio, for more details visit Github page of a project <a href="{{ context['project_url'] }}">{{ context['project_url'] }}</a> </p>
 
 </body>
 </html>

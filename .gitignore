@@ -4,3 +4,5 @@ life_tasks.yml
 elastic-config.yml
 *.log
 out_cv.html
+.ipynb_checkpoints
+cloud.png
