@@ -45,7 +45,7 @@ def filter_projects_if_needed(projects, params):
 
 
 def generate(params):
-    fname = "life_tasks.yml"
+    fname = args.file
     fname_out = "out_cv.html"
     with open(fname, encoding='utf8') as f:
         doc = yaml.load(f)
@@ -78,5 +78,6 @@ def generate(params):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("-p", "--profile", help="profile, which will filter projects according to the application needs")
+    parser.add_argument("-f", "--file", help="YAML path containing your projects", default='life_tasks.yml')
     args = parser.parse_args()
     generate(args)

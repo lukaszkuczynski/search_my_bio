@@ -1,0 +1,62 @@
+General:
+  name: Mr Bean
+  linkedin: https://www.linkedin.com/in/mrbean
+  github: github.com/bean
+  twitter: https://twitter.com/beanbean
+  blog: beans.pl
+  email: beans1234@gmail.com
+
+Education:
+  schools:
+    Some tech school:
+      started: 2001-09
+      finished: 2014-04
+      thesis: Beans and java
+
+Future:
+  To learn:
+    - AWS and beans
+    - Data mining, pattern searching
+  Dream Projects:
+    aa:
+      description: c
+      technologies: vz
+    bb:
+      description: aa
+
+Projects:
+  Commercial:
+    - name : Bean service
+      description: Project was to provide beans.
+      tasks:
+       - business rules validation and customization
+       - implementation
+       - bug fixing
+       - Bean server configuring
+      learned:
+       - Bean configuration
+      measure of success:
+       - no bad beans reported
+      technologies:
+       - Spring
+       - Active MQ
+       - WAS
+       - JNDI
+      started: 2014-03
+      finished: 2015-07
+    - name : Cleaning my closet
+      description: My closet was full
+      tasks:
+       - finding tools
+       - cleaning
+       - cleaning after cleaning
+      learned:
+       - how to clean my closet
+      measure of success:
+       - closet was cool
+      technologies:
+       - brush
+      started: 2016-12
+      finished: 2017-03
+  Private:
+    - name : nothing
