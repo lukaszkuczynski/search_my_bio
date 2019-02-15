@@ -15,7 +15,7 @@
 <body>
 
 
-<div class="container border">
+<div class="container">
 
     <h2 class="display-4">General info</h2>
 
@@ -75,7 +75,7 @@
                 <small class="text-muted">started {{ project['started'] }}</small>
             </h4>
             <p>{{ project['description']  }}</p>
-            <p>I consider it as a success because of:
+            <p>
                     <ul>
                         {% for story in project['success'] %}
                             <li>{{ story }} </li>
@@ -93,14 +93,16 @@
         </div>
         <hr/>
     {% endfor %}
-
+    
     {% if context['commercial_projects_irrelevant'] %}
+    <small>
     Following projects were judged as irrelevant, so they were excluded from this detailed view:
         <ul>
         {% for project in context['commercial_projects_irrelevant'] %}
             <li>{{ project['name'] }} {{ project['technologies'] }}</li>
         {% endfor %}
         </ul>
+    </small>
     {% endif %}
 
 
@@ -123,7 +125,7 @@
         </div>
         <hr/>
     {% endfor %}
-
+    <small>
     {% if context['private_projects_irrelevant'] %}
     Following projects were judged as irrelevant, so they were excluded from this detailed view:
         <ul>
@@ -132,7 +134,7 @@
         {% endfor %}
         </ul>
     {% endif %}
-
+    </small>
 
 </div>
 
