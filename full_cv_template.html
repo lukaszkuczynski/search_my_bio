@@ -15,7 +15,7 @@
 <body>
 
 
-<div class="container">
+<div class="container border">
 
     <h2 class="display-4">General info</h2>
 
@@ -68,13 +68,19 @@
                 <small class="text-muted">started {{ project['started'] }}</small>
             </h4>
             <p>{{ project['description']  }}</p>
+            <p>I consider it as a success because of:
+                    <ul>
+                        {% for story in project['success'] %}
+                            <li>{{ story }} </li>
+                        {% endfor %}    
+                    </ul>
+                </p>    
             <p>
                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                 {% for tag in project['technologies'] %}
                     <button type="button" class="btn btn-secondary">{{ tag }}</button>
                 {% endfor %}
                 </div>
-
             </p>
         </div>
         <hr/>
@@ -105,7 +111,6 @@
                     <button type="button" class="btn btn-secondary">{{ tag }}</button>
                 {% endfor %}
                 </div>
-
             </p>
         </div>
         <hr/>
