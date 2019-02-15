@@ -36,10 +36,10 @@ def filter_projects_if_needed(projects, params):
             doc = yaml.load(f)
             if not profile_name in doc:
                 raise Exception("Profile '%s' is not available in a profiles definition file." % profile_name)
-            print(doc[profile_name])
             active_projects = set(doc[profile_name]['active'])
             filtered = [project for project in projects if project['name'] in active_projects]
-            return filtered
+            other = [project for project in projects if project['name'] not in active_projects]
+            return filtered, other
     else:
         return projects
 
@@ -50,25 +50,23 @@ def generate(params):
     with open(fname, encoding='utf8') as f:
         doc = yaml.load(f)
         commercial_original = doc['Projects']['Commercial']
-        commercial = filter_projects_if_needed(commercial_original, params)
+        commercial, commercial_irrelevant = filter_projects_if_needed(commercial_original, params)
         private_original = doc['Projects']['Private']
-        private = filter_projects_if_needed(private_original, params)
-        commercial_projects_hidden = len(commercial_original) - len(commercial)
-        private_projects_hidden = len(private_original) - len(private)
-        skill_cloud = cloud(doc)
+        private, private_irrelevant = filter_projects_if_needed(private_original, params)
+        # commercial_projects_hidden = len(commercial_original) - len(commercial)
+        # private_projects_hidden = len(private_original) - len(private)
+        cloud(doc)
         context = {
             'commercial_projects' : commercial,
             'private_projects': private,
             'schools': doc['Education']['schools'],
             'general': doc['General'],
             'project_url': GITHUB_URL,
-            'skills': skill_cloud,
             'skill_cloud_url': CLOUD_FILE_NAME,
-            'commercial_projects_hidden': commercial_projects_hidden,
-            'private_projects_hidden': private_projects_hidden,
+            'commercial_projects_irrelevant': commercial_irrelevant,
+            'private_projects_irrelevant': private_irrelevant,
         }
         out = jinja_render('./full_cv_template.html', context)
-        print(out)
         with open(fname_out, 'wb') as fout:
             fout.write(out.encode('utf-8'))
 

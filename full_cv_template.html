@@ -61,9 +61,6 @@
 
     <h2 class="display-4">Commercial projects</h2>
 
-    {% if context['commercial_projects_hidden'] %}
-    There are context['commercial_projects_hidden'] hidden.
-    {% endif %}
 
     {% for project in context['commercial_projects'] %}
         <div class="item">
@@ -83,13 +80,18 @@
         <hr/>
     {% endfor %}
 
+    {% if context['commercial_projects_irrelevant'] %}
+    Following projects were judged as irrelevant, so they were excluded from this detailed view:
+        <ul>
+        {% for project in context['commercial_projects_irrelevant'] %}
+            <li>{{ project['name'] }} {{ project['technologies'] }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
 
 
     <h2 class="display-4">Private projects</h2>
-
-    {% if context['private_projects_hidden'] %}
-    There are context['private_projects_hidden'] hidden.
-    {% endif %}
 
     {% for project in context['private_projects'] %}
         <div class="item">
@@ -108,6 +110,15 @@
         </div>
         <hr/>
     {% endfor %}
+
+    {% if context['private_projects_irrelevant'] %}
+    Following projects were judged as irrelevant, so they were excluded from this detailed view:
+        <ul>
+        {% for project in context['private_projects_irrelevant'] %}
+            <li>{{ project['name'] }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
 
 
 </div>
