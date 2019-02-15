@@ -40,8 +40,15 @@
 
 
 
-    <!--<h2>Education</h2>-->
-
+    <h2 class="display-4">Education</h2>
+    Online courses:
+    <ul>
+        {% for course in context['courses'] %}
+        <li>
+            {{ course['name'] }} started at {{ course['started'] }}
+        </li>
+        {% endfor %}
+    </ul>
     <!--<div class="printable-cv">-->
         <!--{% for key in context['schools'] %}-->
         <!--<div class="card" >-->

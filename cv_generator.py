@@ -59,7 +59,7 @@ def generate(params):
         context = {
             'commercial_projects' : commercial,
             'private_projects': private,
-            'schools': doc['Education']['schools'],
+            'courses': doc['Education']['courses'],
             'general': doc['General'],
             'project_url': GITHUB_URL,
             'skill_cloud_url': CLOUD_FILE_NAME,
