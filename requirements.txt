@@ -1,4 +1,4 @@
-pyyaml>=3.0,<4.0
-elasticsearch>=5.0.0,<6.0.0
-flask==0.12
+pyyaml
+elasticsearch
+flask
 wordcloud
