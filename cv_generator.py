@@ -33,7 +33,7 @@ def filter_projects_if_needed(projects, params):
     if params.profile:
         with open(PROFILE_FILE_NAME, encoding='utf8') as f:
             profile_name = params.profile
-            doc = yaml.load(f)
+            doc = yaml.load(f, Loader=yaml.FullLoader)
             if not profile_name in doc:
                 raise Exception("Profile '%s' is not available in a profiles definition file." % profile_name)
             active_projects = set(doc[profile_name]['active'])
@@ -48,7 +48,7 @@ def generate(params):
     fname = args.file
     fname_out = "out_cv.html"
     with open(fname, encoding='utf8') as f:
-        doc = yaml.load(f)
+        doc = yaml.load(f, Loader=yaml.FullLoader)
         commercial_original = doc['Projects']['Commercial']
         commercial, commercial_irrelevant = filter_projects_if_needed(commercial_original, params)
         private_original = doc['Projects']['Private']
