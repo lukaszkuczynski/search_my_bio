@@ -10,6 +10,9 @@
           margin: 0;
           padding: 0;
         }
+		div.page-break-block {
+		  page-break-after: always
+		}
     </style>
 </head>
 <body>
@@ -39,7 +42,7 @@
     </p>
 
 
-
+	<div class="block">
     <h2 class="display-4">Education</h2>
     Online courses:
     <ul>
@@ -60,15 +63,19 @@
         <!--</div>-->
         <!--{% endfor %}-->
     <!--</div>-->
-
+	</div>
+	<div class="block page-break-block">	
     <h2 class="display-4">Skill cloud</h2>
         <img src="{{ context['skill_cloud_url'] }}" />
 
         <hr/>
+	</div>
 
+	<div class="block">
     <h2 class="display-4">Commercial projects</h2>
+	
 
-
+	
     {% for project in context['commercial_projects'] %}
         <div class="item">
             <h4>{{ project['name'] }}
@@ -93,6 +100,7 @@
         </div>
         <hr/>
     {% endfor %}
+	
     
     {% if context['commercial_projects_irrelevant'] %}
     <small>
@@ -104,9 +112,9 @@
         </ul>
     </small>
     {% endif %}
+	</div>
 
-
-
+	<div class="block">
     <h2 class="display-4">Private projects</h2>
 
     {% for project in context['private_projects'] %}
@@ -135,11 +143,12 @@
         </ul>
     {% endif %}
     </small>
+	</div>
 
 </div>
 
 
-<p>Printed using SearchMyBio, for more details visit Github page of a project <a href="{{ context['project_url'] }}">{{ context['project_url'] }}</a> </p>
+<p>Printed using SearchMyBio, for details on project go to Github <a href="{{ context['project_url'] }}">{{ context['project_url'] }}</a> </p>
 
 </body>
 </html>
