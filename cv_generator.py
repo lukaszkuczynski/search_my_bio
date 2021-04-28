@@ -36,10 +36,18 @@ def filter_projects_if_needed(projects, params):
             doc = yaml.load(f, Loader=yaml.FullLoader)
             if not profile_name in doc:
                 raise Exception("Profile '%s' is not available in a profiles definition file." % profile_name)
-            active_projects = set(doc[profile_name]['active'])
-            filtered = [project for project in projects if project['name'] in active_projects]
-            other = [project for project in projects if project['name'] not in active_projects]
-            return filtered, other
+            active_projects = ()
+            all_project_names = set(project['name'] for project in projects)
+            if 'active' in doc[profile_name]:
+                active_projects_names = set(doc[profile_name]['active'])
+                filtered = [project for project in projects if project['name'] in active_projects_names]
+            if 'inactive' in doc[profile_name]:
+                inactive_projects_names = set(doc[profile_name]['inactive'])
+                filtered = [project for project in projects if project['name'] not in inactive_projects_names]
+            filtered_names = set(project['name'] for project in filtered)
+            irrelevant_names = all_project_names - filtered_names
+            irrelevant = [project for project in projects if project['name'] in irrelevant_names]
+            return filtered, irrelevant
     else:
         return projects
 

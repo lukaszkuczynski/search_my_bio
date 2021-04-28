@@ -8,3 +8,5 @@ out_cv.html
 cloud.png
 profiles.yml
 *.pdf
+venv
+launch.json
