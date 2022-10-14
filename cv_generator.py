@@ -7,7 +7,6 @@ import argparse
 
 CLOUD_FILE_NAME="cloud.png"
 GITHUB_URL="https://github.com/lukaszkuczynski/search_my_bio"
-PROFILE_FILE_NAME="profiles.yml"
 
 def jinja_render(tpl_path, context):
     path, filename = os.path.split(tpl_path)
@@ -31,12 +30,11 @@ def cloud(doc):
 
 def filter_projects_if_needed(projects, params):
     if params.profile:
-        with open(PROFILE_FILE_NAME, encoding='utf8') as f:
+        with open(params.profilefile, encoding='utf8') as f:
             profile_name = params.profile
             doc = yaml.load(f, Loader=yaml.FullLoader)
             if not profile_name in doc:
                 raise Exception("Profile '%s' is not available in a profiles definition file." % profile_name)
-            active_projects = ()
             all_project_names = set(project['name'] for project in projects)
             if 'active' in doc[profile_name]:
                 active_projects_names = set(doc[profile_name]['active'])
@@ -61,13 +59,14 @@ def generate(params):
         commercial, commercial_irrelevant = filter_projects_if_needed(commercial_original, params)
         private_original = doc['Projects']['Private']
         private, private_irrelevant = filter_projects_if_needed(private_original, params)
+        sorted_certs = sorted(doc['Education']['certificates'], key=lambda a:a['finished'], reverse=True)
         # commercial_projects_hidden = len(commercial_original) - len(commercial)
         # private_projects_hidden = len(private_original) - len(private)
         cloud(doc)
         context = {
             'commercial_projects' : commercial,
             'private_projects': private,
-            'courses': doc['Education']['courses'],
+            'certificates': sorted_certs,
             'general': doc['General'],
             'project_url': GITHUB_URL,
             'skill_cloud_url': CLOUD_FILE_NAME,
@@ -85,5 +84,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("-p", "--profile", help="profile, which will filter projects according to the application needs")
     parser.add_argument("-f", "--file", help="YAML path containing your projects", default='life_tasks.yml')
+    parser.add_argument("-pf", "--profilefile", help="Profile YAML path with profiles", default='profiles.yml')
     args = parser.parse_args()
     generate(args)

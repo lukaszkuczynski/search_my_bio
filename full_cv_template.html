@@ -44,11 +44,11 @@
 
 	<div class="block">
     <h2 class="display-4">Education</h2>
-    Online courses:
+    Certificates:
     <ul>
-        {% for course in context['courses'] %}
+        {% for course in context['certificates'] %}
         <li>
-            {{ course['name'] }} started at {{ course['started'] }}
+            {{ course['name'] }} finished at {{ course['finished'] }}
         </li>
         {% endfor %}
     </ul>

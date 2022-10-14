@@ -12,6 +12,14 @@ Education:
       started: 2001-09
       finished: 2014-04
       thesis: Beans and java
+  certificates:
+    - name: AWS very basic
+      platform: AWS
+      finished: 2022-01
+    - name: AWS very advanced
+      platform: AWS
+      finished: 2022-05
+   
 
 Future:
   To learn:
