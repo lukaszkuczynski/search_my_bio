@@ -15,10 +15,10 @@ Education:
   certificates:
     - name: AWS very basic
       platform: AWS
-      finished: 2022-01
+      completed: 2022-01
     - name: AWS very advanced
       platform: AWS
-      finished: 2022-05
+      completed: 2022-05
    
 
 Future:

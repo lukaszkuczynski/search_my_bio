@@ -59,7 +59,7 @@ def generate(params):
         commercial, commercial_irrelevant = filter_projects_if_needed(commercial_original, params)
         private_original = doc['Projects']['Private']
         private, private_irrelevant = filter_projects_if_needed(private_original, params)
-        sorted_certs = sorted(doc['Education']['certificates'], key=lambda a:a['finished'], reverse=True)
+        sorted_certs = sorted(doc['Education']['certificates'], key=lambda a:a['completed'], reverse=True)
         # commercial_projects_hidden = len(commercial_original) - len(commercial)
         # private_projects_hidden = len(private_original) - len(private)
         cloud(doc)

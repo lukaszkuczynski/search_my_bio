@@ -48,7 +48,7 @@
     <ul>
         {% for course in context['certificates'] %}
         <li>
-            {{ course['name'] }} finished at {{ course['finished'] }}
+            {{ course['name'] }} completed at {{ course['completed'] }}
         </li>
         {% endfor %}
     </ul>
@@ -133,16 +133,6 @@
         </div>
         <hr/>
     {% endfor %}
-    <small>
-    {% if context['private_projects_irrelevant'] %}
-    Following projects were judged as irrelevant, so they were excluded from this detailed view:
-        <ul>
-        {% for project in context['private_projects_irrelevant'] %}
-            <li>{{ project['name'] }}</li>
-        {% endfor %}
-        </ul>
-    {% endif %}
-    </small>
 	</div>
 
 </div>
