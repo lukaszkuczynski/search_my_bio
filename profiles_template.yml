@@ -1,3 +1,5 @@
 beans:
   active:
     - Bean service
+    - My Home Project
+    - nothing

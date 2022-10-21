@@ -15,10 +15,3 @@ First you have to have your file defined.  Please create
 ## Profiling
 You can define CV profiles using `profiles.yml` file.  Then the generated CV will contain only selected projects.
 The exemplary profiles definition file is included in the repo.
-
-# Web browser
-to be reimplented..
-
-## API usage
- - Query for match on every field of document
- `/api/search?q=queried_text` returns list of documents matching `queried_text`

@@ -11,5 +11,8 @@ wordcloud = "*"
 
 [dev-packages]
 
+[scripts]
+prod = "python cv_generator.py -p platform"
+ 
 [requires]
 python_version = "3.9"

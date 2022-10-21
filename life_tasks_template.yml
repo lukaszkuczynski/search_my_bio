@@ -68,3 +68,5 @@ Projects:
       finished: 2017-03
   Private:
     - name : nothing
+    - name : My Home Project
+      url: http://google.pl

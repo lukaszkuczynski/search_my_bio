@@ -28,13 +28,13 @@
     </p>
 
         <p>
-            <strong>LinkedIn: </strong> {{ context['general']['linkedin'] }}
+            <strong>LinkedIn: </strong> <a href="{{ context['general']['linkedin'] }}">{{ context['general']['linkedin'] }}</a>
         </p>
         <p>
-            <strong>Github: </strong> {{ context['general']['github'] }}
+            <strong>Github: </strong> <a href="{{ context['general']['github'] }}">{{ context['general']['github'] }}</a>
         </p>
         <p>
-            <strong>Blog: </strong> {{ context['general']['blog'] }}
+            <strong>Blog: </strong> <a href="{{ context['general']['blog'] }}">{{ context['general']['blog'] }}</a>
         </p>
 
     <p>
@@ -64,12 +64,6 @@
         <!--{% endfor %}-->
     <!--</div>-->
 	</div>
-	<div class="block page-break-block">	
-    <h2 class="display-4">Skill cloud</h2>
-        <img src="{{ context['skill_cloud_url'] }}" />
-
-        <hr/>
-	</div>
 
 	<div class="block">
     <h2 class="display-4">Commercial projects</h2>
@@ -83,11 +77,11 @@
             </h4>
             <p>{{ project['description']  }}</p>
             <p>
-                    <ul>
+                    <!-- <ul>
                         {% for story in project['success'] %}
                             <li>{{ story }} </li>
                         {% endfor %}    
-                    </ul>
+                    </ul> -->
                 </p>    
             <p>
 
@@ -123,6 +117,7 @@
                 <small class="text-muted">started {{ project['started'] }}</small>
             </h4>
             <p>{{ project['description']  }}</p>
+            <p>Code repo URL: <a href="{{ project['url'] }}">{{ project['url'] }}</a></p>
             <p>
                 <div class="btn-group btn-group-sm" role="group" aria-label="Small button group">
                 {% for tag in project['technologies'] %}
@@ -135,10 +130,19 @@
     {% endfor %}
 	</div>
 
+    <div class="block">	
+    <h2 class="display-4">Skill cloud</h2>
+        <img src="{{ context['skill_cloud_url'] }}" />
+        <hr/>
+    </div> 
+    
+
+<p><small>printed using  <a href="{{ context['project_url'] }}">SearchMyBio</a> </small> </p>
+
+
 </div>
 
 
-<p>Printed using SearchMyBio, for details on project go to Github <a href="{{ context['project_url'] }}">{{ context['project_url'] }}</a> </p>
 
 </body>
 </html>
